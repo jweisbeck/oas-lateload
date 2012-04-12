@@ -39,8 +39,8 @@
 		
 		// third party ads object
 		var globe = {
-			thirdPartyIds	: [], // store ad ids
-			adPositionNames	: []
+			thirdPartyIds	: [],
+			adPositionNames	: [] 
 		}
 
 	</script>
@@ -290,10 +290,15 @@
 								</div>
                                 
                                 
-                                <div class="ad"><script>OAS_RICH('CENTRAL')</script></div>
+                                <div class="ad" id="ad-3">
+                                	<script>
+										// CENTRAL
+										globe.thirdPartyIds.push('3');
+										globe.adPositionNames.push('CENTRAL');
+									</script>
+								</div>
 
-                                
-                                
+              
 								<div class="articlePluckHidden">
 									<p>Higher home heating oil prices and more families seeking aid due to the sour economy are straining resources. There's a 10 percent surge in new applicants in Boston, Drew said.</p>
 								</div>
@@ -446,7 +451,13 @@
 				<div class="sidebar-ad">
 					<div class="advertisement">
 						<p>Advertisement</p>
-                        <div class="ad"><script>OAS_RICH('ARTICLE');</script></div>
+                        <div class="ad" id="ad-4">
+							<script>
+								// ARTICLE
+								globe.thirdPartyIds.push('4');
+								globe.adPositionNames.push('ARTICLE');
+							</script>
+                        </div>
 					</div>
 				</div><!-- / .sidebar-ad -->
 				
@@ -549,7 +560,13 @@
 		</div><!-- / .secondary -->
     </footer>
 		<p>Advertisement</p>
-        <div class="ad"><script>OAS_RICH('FOOTER');</script></div>
+        <div class="ad" id="ad-5">
+			<script>
+				// TOP
+				globe.thirdPartyIds.push('5');
+				globe.adPositionNames.push('FOOTER');
+			</script>
+		</div>
     </div> <!-- end of #contain -->
 
 
@@ -580,7 +597,7 @@
 						sourceEl = doc.getElementById( i + '-cache'),
 						rootEl = document.getElementById( i + '-root'); // don't know if I can/should use this
 
-					//var destScripts = destEl.getElementsByTagName('script');
+					var destScripts = destEl.getElementsByTagName('script');
 					//destEl.removeChild( destScripts );
 
 					// move ad in it's home div spot and display it!
@@ -621,11 +638,57 @@
 				
 				document.write('<div id="'+id+'-cache'+'" style="display:none;"><div id="'+id+'-root'+'">');
 				OAS_RICH( ''+name +'');
+				console.log('hi');
 				
 		})( this );
 	</script>
 	<script>document.write('</div></div>');</script>
 
+	<script>
+		// CENTRAL
+		(function( win ){
+			var doc = win.document,
+				id = globe.thirdPartyIds[2],
+				name = globe.adPositionNames[2];
+				
+				document.write('<div id="'+id+'-cache'+'" style="display:none;"><div id="'+id+'-root'+'">');
+				OAS_RICH( ''+name +'');
+				console.log('hi');
+				
+		})( this );
+	</script>
+	<script>document.write('</div></div>');</script>
+
+		<script>
+		// ARTICLE
+		(function( win ){
+			var doc = win.document,
+				id = globe.thirdPartyIds[3],
+				name = globe.adPositionNames[3];
+				
+				document.write('<div id="'+id+'-cache'+'" style="display:none;"><div id="'+id+'-root'+'">');
+				OAS_RICH( ''+name +'');
+				console.log('hi');
+				
+		})( this );
+	</script>
+	<script>document.write('</div></div>');</script>
+
+
+		<script>
+		// FOOTER
+		(function( win ){
+			var doc = win.document,
+				id = globe.thirdPartyIds[4],
+				name = globe.adPositionNames[4];
+				
+				document.write('<div id="'+id+'-cache'+'" style="display:none;"><div id="'+id+'-root'+'">');
+				OAS_RICH( ''+name +'');
+				console.log('hi');
+				
+		})( this );
+	</script>
+	<script>document.write('</div></div>');</script>
 
 
 
