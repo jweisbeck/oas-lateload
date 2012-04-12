@@ -28,56 +28,31 @@
 	<link href="http://cache.boston.com/universal/css/bcom_pluck_styles.css" rel="stylesheet" type="text/css">
 	
 	<link rel="stylesheet" href="_css/bcom-tmpl/article-styles.css" />
-	
-	<!-- Added for Adaptive ad testing -->
-	<link rel="stylesheet" href="_css/bcom-tmpl/rwd.css" />
-	
+	<link rel="stylesheet" href="_css/bcom-tmpl/rwd.css" />	
 	<script src="_js/libs.js"></script>
 	
-
 	
 	<script>
 		var oas = oas || {};
 		oas.sitepage = 'www.boston.com/homepage/default/';
 		oas.dev = false;
+		
+		// third party ads object
+		var globe = {
+			thirdPartyIds	: [], // store ad ids
+			adPositionNames	: []
+		}
+
 	</script>
 	<script src="_js/ad-ad.js"></script>
 	<script src="_js/bcom-tmpl/concatenated-article-head-scripts.js"></script>
 	<script src="_js/rwd.js">
 	
-	<!-- Page Specific JS Variables -->
-	<script>
-		var artTaxonomy = ['News/Middle East'],
-			artOrgs = ['Associated Press', 'Al Qaeda'],
-			artCats = ['Terrorism'],
-			artCatsSecond = ['Iraq War (2003- )', 'Politics and Government', 'Sunni Muslims', 'Accidents and Safety', 'Shiite Muslims', 'United States Defense and Military Forces', 'Civil War and Guerrilla Warfare', 'Demonstrations and Riots', 'Government Employees'];
-		if (artCats) {	var OAS_query = "keywords=" + artCats.join(); }
-		//
-		var var5 = 'news_';
-		//
-		var comments_global = 1;
-		//
-		var archivedState = 0;
-	</script>
-	<!-- Pluck Related Scripts -->
-	<script>
-		var comments_global = 1;
-		if(document.location.search.indexOf("comments=all")!=-1){document.domain = "boston.com"}
-		var serverUrl = "http://sitelife.boston.com/ver1.0/Direct/Process";
-	</script>
 	<script type="text/javascript" src="http://cache.boston.com/universal/js/sitelife/DirectProxy"></script>
 	<script type="text/javascript" src="http://cache.boston.com/universal/js/sitelife/SiteLifeProxy"></script>
 	<script type="text/javascript" src="http://sitelife.boston.com/ver1.0/SiteLifeScripts"></script>
 	<script type="text/javascript" src="http://cache.boston.com/universal/js/sitelife/SiteLifeScripts"></script>
-	<script type="text/javascript" src="http://cache.boston.com/universal/js/pComments.js"></script>
-	<script id="pluckData" type="text/Javascript" language="JavaScript">
-		var pluckID = '20111222_0779739726',
-		 	pluckCats = ['News/Middle East'],
-		 	pluckSection = 'AP XML Story',
-			pluckTitle = 'Wave of bombings across Iraqi capital kills 60',
-			pluckAccess = 1;
-	</script>
-	
+	<script type="text/javascript" src="http://cache.boston.com/universal/js/pComments.js"></script>	
 </head>
 <body>
 <div id="contain">
@@ -118,7 +93,15 @@
 					</div>
 				</form>
 			</div><!-- / .masthead-search -->
-			<div class="ad-centered"><div class="ad"><script>OAS_RICH('TOP');</script><script>OAS_RICH('HEADLINE2')</script></div></div>
+			<div class="ad-centered">
+				<div class="ad" id="ad-1">
+					<script>
+						// TOP
+						globe.thirdPartyIds.push('1');
+						globe.adPositionNames.push('TOP');
+					</script>
+				</div>
+			</div>
 		</div><!-- end .mini-nav -->
 		<nav id="primary" role="navigation">
 			<h1 class="sections-heading">Sections</h1>
@@ -276,63 +259,8 @@
 								</div><!-- End utility -->
 							</div><!-- End headTools -->
 						</div><!-- End articleHeader -->
-						<div id="sharetoolContainer" class="tools-top">
-							<ul>
-								<li id="shareFacebook">
-									<div class="share_button" share_type="facebook"></div>
-								</li>
-								<li id="shareTwitter">
-									<iframe allowtransparency="true" frameborder="0" scrolling="no" style="width:100px; height:20px;" src="http://platform.twitter.com/widgets/tweet_button.html?url=http://www.boston.com/yourtown/boston/westroxbury/articles/2011/12/11/northeast_states_cut_heating_aid_to_poor&amp;via=BostonDotCom&amp;text=Northeast%20states%20cut%20heating%20aid%20to%20poor&amp;related=BostonGlobe"></iframe>
-								</li>
-								<li id="shareLinkedIn">
-									<span class="st_linkedin_hcount" displaytext="LinkedIn"></span>
-								</li>
-								<li id="shareGPlus" style="width:60px; margin-right:7px;">
-									<div id="st_gPlus" class="st_plusone_hcount"></div>
-								</li>
-								<li id="shareShareThis">
-									<span class="st_sharethis_hcount" displaytext="ShareThis"></span>
-								</li>
-								<li id="shareEmail">
-									<a class="etaf" href="javascript:void(0)">E-mail</a>
-								</li>
-								<!-- Email a Friend Widget -->
-								<div id="bdc_emailWidget" class="hide">
-									<div id="≈" class="innerContainer">
-										<img id="pointer_top" src="http://cache.boston.com/universal/site_graphics/etaf/pointer_top.gif" alt="" />
-										<div class="titleBar">
-											<h3>E-mail this article</h3>
-											<a id="closeWindow_etaf" onclick="document.getElementById('bdc_emailWidget').style.display='none';"></a>
-											<div class="cf"></div>
-										</div>
-										<form action="" method="post" id="theEMTOFForm" autocomplete="off">
-											<input name="sender_name" id="sender_name" value="" type="hidden">
-											<input name="story_url" id="story_url" value="${canonicalLink}" type="hidden">
-											<label for="recipient_email">To:</label>
-											<div id="emailt_to_error" class="errorMessage hide">Invalid E-mail address</div>
-											<input id="recipient_email" name="recipient_email" class="noerr" value="Separate multiple addresses with a comma" onfocus="this.style.color='#000';" type="text">
-											<label for="personalMessage">Add a personal message:<em>(80 character limit)</em></label>
-											<textarea type="text" id="message" name="message" onchange="this.value=this.value.substring(0,80)" onkeyup="this.value=this.value.substring(0,80)"></textarea>
-											<label for="sender_email">Your E-mail:</label>
-											<div id="emailt_from_error" class="errorMessage hide">Invalid E-mail address</div>
-											<input id="sender_email" name="sender_email" class="noerr" type="text">
-											<input class="form-button" value="Send" type="submit">
-											<div class="cf"></div>
-										</form>
-										<div id="bdc_EMTOF_sending" class="sendingArticle">
-											<img src="http://cache.boston.com/universal/site_graphics/etaf/loading_icon.gif" />
-											<h4>Sending your article</h4>
-										</div>
-										<div id="bdc_EMTOF_sent" class="sendingArticle">
-											<h4>Your article has been sent.</h4>
-										</div>
-										<div class="cf"></div>
-									</div><!-- / .innerContainer -->
-									<img id="pointer_bottom" src="http://cache.boston.com/universal/site_graphics/etaf/pointer_bottom.gif" alt="" />
-								</div><!-- / #bdc_emailWidget -->
-							</ul>
-						</div><!-- / #sharetoolContainer -->
-                        <div class="ad"><script>OAS_RICH('HEADLINE2')</script></div>
+					
+
 						<div id="articleGraphs">
 							<div id="page1">
 								<div class="firstGraph">
@@ -410,93 +338,13 @@
 								</div>
 							</div><!-- / #page1 -->
 						</div><!-- / #articleGraphs -->
-						<div id="pagination">
-							<ul id="paginationI">
-								<li class="singlePage">
-									<a onclick="switchSingleOn()" href="#">Single Page</a>
-								</li>
-								<li class="number">
-									<a href="http://www.boston.com/news/world/middleeast/articles/2011/12/22/wave_of_bombings_across_iraqi_capital_kills_49?page=1" id="link1">1</a>
-								</li>
-								<li class="number">
-									<a href="http://www.boston.com/news/world/middleeast/articles/2011/12/22/wave_of_bombings_across_iraqi_capital_kills_49?page=2" id="link2">2</a>
-								</li>
-								<li id="prev" class="prevNext"><span class="arrowLeft">&nbsp;</span></li>
-								<li id="next" class="prevNext"><span class="arrowRight">&nbsp;</span></li>
-							</ul><!-- / #paginationI -->
-						</div><!-- / #pagination -->
-						<!-- Pagination Script -->
-						<script language="JavaScript">
-							var cpgnum=0,articlepgs=2,articleurl='http://www.boston.com/news/world/middleeast/articles/2011/12/22/wave_of_bombings_across_iraqi_capital_kills_49',asep='?';
-							articlePaginate();
-						</script>
-						<div id="sharetoolContainer">
-							<ul>
-								<li id="shareFacebook">
-									<div class="share_button" share_type="facebook"></div>
-								</li>
-								<li id="shareTwitter">
-									<iframe allowtransparency="true" frameborder="0" scrolling="no" style="width:100px; height:20px;" src="http://platform.twitter.com/widgets/tweet_button.html?url=http://www.boston.com/yourtown/boston/westroxbury/articles/2011/12/11/northeast_states_cut_heating_aid_to_poor&amp;via=BostonDotCom&amp;text=Northeast%20states%20cut%20heating%20aid%20to%20poor&amp;related=BostonGlobe"></iframe>
-								</li>
-								<li id="shareLinkedIn">
-									<span class="st_linkedin_hcount" displaytext="LinkedIn"></span>
-								</li>
-								<li id="shareGPlus" style="width:60px; margin-right:7px;">
-									<div id="st_gPlus" class="st_plusone_hcount"></div>
-								</li>
-								<li id="shareShareThis">
-									<span class="st_sharethis_hcount" displaytext="ShareThis"></span>
-								</li>
-								<li id="shareEmail">
-									<a class="etaf" href="javascript:void(0)">E-mail</a>
-								</li>
-								<!-- Email a Friend Widget -->
-								<div id="bdc_emailWidget" class="hide">
-									<div id="≈" class="innerContainer">
-										<img id="pointer_top" src="http://cache.boston.com/universal/site_graphics/etaf/pointer_top.gif" alt="" />
-										<div class="titleBar">
-											<h3>E-mail this article</h3>
-											<a id="closeWindow_etaf" onclick="document.getElementById('bdc_emailWidget').style.display='none';"></a>
-											<div class="cf"></div>
-										</div>
-										<form action="" method="post" id="theEMTOFForm" autocomplete="off">
-											<input name="sender_name" id="sender_name" value="" type="hidden">
-											<input name="story_url" id="story_url" value="${canonicalLink}" type="hidden">
-											<label for="recipient_email">To:</label>
-											<div id="emailt_to_error" class="errorMessage hide">Invalid E-mail address</div>
-											<input id="recipient_email" name="recipient_email" class="noerr" value="Separate multiple addresses with a comma" onfocus="this.style.color='#000';" type="text">
-											<label for="personalMessage">Add a personal message:<em>(80 character limit)</em></label>
-											<textarea type="text" id="message" name="message" onchange="this.value=this.value.substring(0,80)" onkeyup="this.value=this.value.substring(0,80)"></textarea>
-											<label for="sender_email">Your E-mail:</label>
-											<div id="emailt_from_error" class="errorMessage hide">Invalid E-mail address</div>
-											<input id="sender_email" name="sender_email" class="noerr" type="text">
-											<input class="form-button" value="Send" type="submit">
-											<div class="cf"></div>
-										</form>
-										<div id="bdc_EMTOF_sending" class="sendingArticle">
-											<img src="http://cache.boston.com/universal/site_graphics/etaf/loading_icon.gif" />
-											<h4>Sending your article</h4>
-										</div>
-										<div id="bdc_EMTOF_sent" class="sendingArticle">
-											<h4>Your article has been sent.</h4>
-										</div>
-										<div class="cf"></div>
-									</div><!-- / .innerContainer -->
-									<img id="pointer_bottom" src="http://cache.boston.com/universal/site_graphics/etaf/pointer_bottom.gif" alt="" />
-								</div><!-- / #bdc_emailWidget -->
-							</ul>
-						</div><!-- / #sharetoolContainer -->
+
+	
+						<div id="sharetoolContainer"></div><!-- / #sharetoolContainer -->
 						<div id="nextIn">
 							<a href="http://www.boston.com/news/world/middleeast/?camp=related-articles:on:link:article-page:more" title="Middle East">More articles in Middle East</a>
 						</div><!-- / #nextIn -->
-						<div id="outBrain">
-							<script language="JavaScript">
-							<!--
-							var OutbrainPermaLink='http://www.boston.com/news/world/middleeast/articles/2011/12/22/wave_of_bombings_across_iraqi_capital_kills_49';
-							runOutBrain();
-							-->
-							</script>
-						</div><!-- / #outBrain -->
+
 					</div><!-- / #article -->
 					<div class="cf"></div>
 					<a name="commentAnchor"></a>
@@ -513,154 +361,25 @@
 				<!--google_ad_section_end-->
 				
 				<div class="cf"></div>
-				<div style="background-color:#ecf4ff;display:none" id="commLoginForm">
-					<div style="color: darkred;"><span id="comErrMsg"></span></div>
-					<form id="lgForm" onsubmit="return false">
-						<table cellspacing="0" style="margin: 5px; width: 98%;height:200px" id="logtable">
-							<tbody><tr><td colspan="2"></td></tr>
-								<tr>
-									<td colspan="2">
-										<h3 id="unameTrMsg">LOG IN TO COMMENT</h3>
-										<div id="snameRetry" style="font-size:11px;color:darkred;display:none;text-align:center;">
-											Sorry, we could not find your e-mail or password.<br />Please try again, or click <a href="http://members.boston.com/reg/forgetPwd.do?dispatch=view">here</a> to retrieve your password.
-										</div>
-									</td>
-								</tr>
-								<tr valign="top">
-									<td style="padding: 4px; width: 250px;">
-										<div>
-											<b>Existing users</b>
-											<br />
-											<table>
-												<tbody>
-													<tr>
-														<td><span id="unameS1" style="display:none;color:darkred">*</span>E-mail:</td>
-														<td><input type="text" style="" maxlength="50" name="userName" id="userName" /></td>
-													</tr>
-													<tr>
-														<td><span id="unameS2" style="display:none;color:darkred">*</span>Password:</td>
-														<td><input type="password" style="" maxlength="50" name="pass" id="pass" /></td>
-													</tr>
-													<tr valign="top" id="unameTr" style="display:none;">
-														<td><span style="color:darkred">*</span>Screen name:</td>
-														<td>
-															<input type="text" style="" maxlength="50" name="sname" id="sname" />
-															<br />
-															<div id="snameMsg" style="font-size:11px;color:darkred;">(*fields are required)</div>
-														</td>
-													</tr>
-													<tr>
-														<td></td>
-														<td>
-															<div class="bluBtn" style="float: right; width: 100px; margin-left: 4px; margin-top: 12px;">
-																<a style="color: White;" href="javascript:bcSubmitLogin();" name="btnlogin" id="btnlogin">Login</a>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td colspan="2">
-															<div style="font-size: 8pt; line-height: 1.5em;">
-																<a style="color: rgb(0, 0, 254);" href="http://members.boston.com/reg/forgetPwd.do?dispatch=view">Forgot your password?</a>
-															</div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</td>
-									<td style="padding: 4px;">
-										<b>New users</b>
-										<br />
-										Please take a minute to register. After you register and pick a screen name, you can publish your comments everywhere on the site. <a href="http://www.boston.com/community/forums/rules" target="policy" onclick="return!open(this.href,this.target,'width=400,height=500');">Posting Policy</a>.
-										<br />
-										<br />
-										<div class="bluBtn" style="float: right; width: 100px; margin-left: 4px;">
-											<a href="http://members.boston.com/reg/login.do?dispatch=loginpage" style="color: rgb(255, 255, 255);">Register</a>
-										</div>
-										<br />
-										<br />
-										<div align="center">
-											<a href="http://www.truste.org/ivalidate.php?url=www.boston.com&amp;sealid=101"><img height="47" width="171" src="http://graphics.boston.com/images/registration/truste2007/TRUSTe_Certified_Privacy.gif" alt="TRUSTe Certified Privacy" /></a>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table><!-- / #logtable -->
-					</form><!-- / #lgForm -->
-					<hr />
-				</div><!-- / #commLoginForm -->
-				<a name="addComm"></a>
-				<div id="Comments_Container1wrap" style="background-color:#ecf4ff;">
-					<div id="notYou" style="display:none;font-size:11px;"></div>
-					<div id="Comments_Container1"></div>
-					<div style="text-align:right;display:none" id="pPolicy">
-						Your comment is subject to the rules of our <a href="http://www.boston.com/community/forums/rules" target="policy" onclick="return!open(this.href,this.target,'width=400,height=500');">Posting Policy</a>&nbsp;<br />This comment may appear on your public profile. <a href="http://www.boston.com/help/public_profile_faq">Public
-Profile FAQ</a>&nbsp;
-					</div><!-- / #pPolicy -->
-				</div><!-- / #Comments_Container1wrap -->
-				<div id="wait" style="display:none;position:absolute;margin-left:240px;margin-top:120px;">
-					<center><img src="http://cache.boston.com/universal/site_graphics/waiting.gif"></center>
-				</div><!-- / #wait -->
-				<div id="articleFootAd">
-					<div id="articleBottomAd">
-						<script language="JavaScript"><!--
-							OAS_AD('BOTTOM');
-							//--></script>
-					</div><!-- #articleBottomAd -->		
-				</div><!-- / #articleFootAd -->
-				<script language="JavaScript"><!--
-					embedArticleContent();
-				//--></script>
+		
+
 			</div><!-- / #Col1 -->
 			
 			<!-- * * * Begin Column 2 * * * -->
 			
 			<div id="Col2" class="group-alt">
-				<div id="rightAd" class="sidebar-ad">
-                        <div class="ad"><script>OAS_RICH('ARTICLE');</script></div>
+				<div id="ad-2" class="sidebar-ad">
+					<script>
+						// ARTICLE
+						globe.thirdPartyIds.push('2');
+						globe.adPositionNames.push('ARTICLE');
+					</script>
                 <div>
 
-					</div>
-					<!-- Tremor Companion Banner Container -->
-					<div id="adCompanionBanner" style="visibility:hidden;position:absolute;z-index:500;top:225px;"></div>
-					<!-- Acudeo companion banner loader script -->
-					<script type="text/javascript" src="http://objects.tremormedia.com/embed/js/banners.js"></script>
-					<script type="text/javascript">
-						function displayCompanionBanners(banners) {
-							tmDisplayBanner(banners, "adCompanionBanner", 300, 250);
-							document.getElementById('rightAd').style.visibility = "hidden";
-						}
-						function hideCompanionBanners(banners) {
-							tmHideBanner("adCompanionBanner");
-							document.getElementById('rightAd').style.visibility = "visible";
-						}
-					</script>
-				</div><!-- / #rightAd -->
-				<!-- Twitter Box -->
-				<div class="sidebar-section">
-					<div id="twitter_div">
-						<h3 class="sectionHeader">On Twitter</h3>
-						<p class="tweets-link"><a href="http://twitter.com/BostonDotCom" >@BostonDotCom tweets</a> &raquo;</p>
-						<ul id="twitter_update_list">
-							<img src="http://cache.boston.com/jobs/i/waiting.gif" height="32" width="32" alt="waiting for twitter" />Waiting for Twitter to feed in the latest...
-						</ul><!-- / #twitter_update_list -->
-						<div class="like-and-follow">
-							<ul>
-								<li>Like <a href="">Boston.com</a> on Facebook</li>
-								<li>Follow <a href="">@BostonDotCom</a> on Twitter</li>
-							</ul>
-						</div><!-- / .like-and-follow -->
-					</div><!-- / #twitter_div -->
-					<script type="text/javascript" src="http://cache.boston.com/universal/js/twitterwidget.js"></script>
-					<script type="text/javascript">twitterCallback2([{"id_str":"149870572648660993","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Thu Dec 22 15:15:03 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56217,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":true,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47640,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"default_profile":false,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":1,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/www.hootsuite.com\" rel=\"nofollow\"\u003EHootSuite\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149870572648660993,"text":"In a bind with Christmas just 3 days away? Here's some last-minute gift ideas. http:\/\/t.co\/7td0tGiK"},{"id_str":"149860758224777216","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Thu Dec 22 14:36:03 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56217,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":null,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":null,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47637,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","default_profile":false,"listed_count":2512,"notifications":null,"location":"Boston, MA","id":14602259,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":2,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/www.hootsuite.com\" rel=\"nofollow\"\u003EHootSuite\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149860758224777216,"text":"Biggest business fails of 2011. What gets your vote? http:\/\/t.co\/86h1v1rU"},{"id_str":"149825250618646528","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Thu Dec 22 12:14:58 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56217,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","default_profile":false,"following":false,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47635,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":1,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/boston.com\" rel=\"nofollow\"\u003EBoston.com Tweets\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149825250618646528,"text":"Political Intelligence blog: Gingrich takes aim at Mass. - http:\/\/t.co\/16r1tmCE"},{"id_str":"149825240371961857","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Thu Dec 22 12:14:55 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56217,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":true,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","default_profile":false,"profile_background_tile":false,"followers_count":47632,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":2,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/boston.com\" rel=\"nofollow\"\u003EBoston.com Tweets\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149825240371961857,"text":"Local news: Romney dodges tax dispute - http:\/\/t.co\/NVLLKrmH"},{"id_str":"149787556349882368","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Thu Dec 22 09:45:11 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56215,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":true,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","default_profile":false,"profile_background_tile":false,"followers_count":47626,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":1,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/boston.com\" rel=\"nofollow\"\u003EBoston.com Tweets\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149787556349882368,"text":"Mitt Romney on Late Show: &#8216;Newt Gingrich? Really?&#8217; - http:\/\/t.co\/qiWCGk6Z"},{"id_str":"149698670172979201","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"retweeted_status":{"id_str":"149686923852644352","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Thu Dec 22 03:05:18 +0000 2011","user":{"id_str":"29068597","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/gary-washburn.blogspot.com\/","profile_use_background_image":true,"name":"gary washburn","default_profile_image":false,"friends_count":252,"profile_text_color":"3C3940","statuses_count":3493,"profile_background_image_url":"http:\/\/a3.twimg.com\/profile_background_images\/92222949\/CalAthletics_200x150.jpg","utc_offset":-18000,"description":"Gary is the National NBA writer for the Boston Globe and will give some of his thoughts on the NBA, other sports and various topics.","is_translator":false,"created_at":"Sun Apr 05 21:25:39 +0000 2009","profile_link_color":"0099B9","following":false,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/92222949\/CalAthletics_200x150.jpg","favourites_count":2,"follow_request_sent":false,"geo_enabled":false,"profile_background_color":"0099B9","profile_background_tile":true,"followers_count":5750,"profile_image_url":"http:\/\/a3.twimg.com\/profile_images\/1078873659\/August2009_113_normal.jpg","screen_name":"gwashburn14","default_profile":false,"show_all_inline_media":false,"profile_sidebar_fill_color":"95E8EC","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/1078873659\/August2009_113_normal.jpg","listed_count":425,"notifications":false,"location":"Boston","id":29068597,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"5ED4DC"},"in_reply_to_user_id":null,"retweet_count":8,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"retweeted":false,"source":"\u003Ca href=\"http:\/\/www.tweetdeck.com\" rel=\"nofollow\"\u003ETweetDeck\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149686923852644352,"text":"#celtics cruise to 81-73 win. Garnett played just 18 minutes. and Rajon Rondo leads Boston with 17"},"geo":null,"favorited":false,"created_at":"Thu Dec 22 03:51:58 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56216,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":true,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47630,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","default_profile":false,"show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":8,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"retweeted":false,"source":"web","in_reply_to_user_id_str":null,"coordinates":null,"id":149698670172979201,"text":"RT @gwashburn14: #celtics cruise to 81-73 win. Garnett played just 18 minutes. and Rajon Rondo leads Boston with 17"},{"id_str":"149689355680747520","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Thu Dec 22 03:14:58 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56217,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":false,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47639,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"default_profile":false,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":1,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/boston.com\" rel=\"nofollow\"\u003EBoston.com Tweets\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149689355680747520,"text":"Romney sidesteps tax dispute; Gingrich dives in - http:\/\/t.co\/Cl4ubARw"},{"id_str":"149689345719275521","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Thu Dec 22 03:14:55 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56216,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":false,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47630,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","default_profile":false,"show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":0,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/boston.com\" rel=\"nofollow\"\u003EBoston.com Tweets\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149689345719275521,"text":"Authorities: &#8216;92 Lexington murder solved - http:\/\/t.co\/gV3gGmxc"},{"id_str":"149634523943022592","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Wed Dec 21 23:37:05 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56217,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":true,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47636,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"default_profile":false,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":1,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/dlvr.it\" rel=\"nofollow\"\u003Edlvr.it\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149634523943022592,"text":"Somerville couple plead not guilty to charges they stole 100 Christmas presents http:\/\/t.co\/753yEcBW"},{"id_str":"149626462138400768","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Wed Dec 21 23:05:03 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56217,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":true,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47639,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","default_profile":false,"listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":4,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/dlvr.it\" rel=\"nofollow\"\u003Edlvr.it\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149626462138400768,"text":"At Home for Little Wanderers, donations for teens lag http:\/\/t.co\/f2VkBIWx"},{"id_str":"149622451796574208","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Wed Dec 21 22:49:07 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56217,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":true,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47639,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","default_profile":false,"listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":1,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/dlvr.it\" rel=\"nofollow\"\u003Edlvr.it\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149622451796574208,"text":"Charges lodged against two former state workers in Fall River swimming pool death http:\/\/t.co\/J4Mz3UtR"},{"id_str":"149621441317449729","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Wed Dec 21 22:45:06 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56217,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":true,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47640,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","default_profile":false,"show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":0,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/boston.com\" rel=\"nofollow\"\u003EBoston.com Tweets\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149621441317449729,"text":"Charges made in Mass. probation scandal - http:\/\/t.co\/Qw6IvAJo"},{"id_str":"149618619628797954","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Wed Dec 21 22:33:53 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","default_profile":false,"profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56217,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":true,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47635,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":0,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/dlvr.it\" rel=\"nofollow\"\u003Edlvr.it\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149618619628797954,"text":"Charges lodged against two former state workers in Fall River swimming pool death http:\/\/t.co\/q8CTpy9Z"},{"id_str":"149614556707168257","in_reply_to_status_id":null,"contributors":null,"place":null,"truncated":false,"geo":null,"favorited":false,"created_at":"Wed Dec 21 22:17:44 +0000 2011","user":{"id_str":"14602259","contributors_enabled":false,"lang":"en","protected":false,"url":"http:\/\/boston.com","default_profile":false,"profile_use_background_image":true,"name":"Boston.com News","default_profile_image":false,"friends_count":1497,"profile_text_color":"000000","statuses_count":56217,"profile_background_image_url":"http:\/\/a1.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","utc_offset":-18000,"description":"Our top stories of the day, from the editors of Boston.com and the Boston Globe.","is_translator":false,"created_at":"Wed Apr 30 16:28:20 +0000 2008","profile_link_color":"3f5f9c","following":true,"profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/4077975\/Twitter_background.jpg","favourites_count":1,"follow_request_sent":false,"geo_enabled":true,"profile_background_color":"ffffff","profile_background_tile":false,"followers_count":47636,"profile_image_url":"http:\/\/a2.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","screen_name":"BostonDotCom","show_all_inline_media":false,"profile_sidebar_fill_color":"e9e9e9","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/75237213\/bcom_72x72_normal.gif","listed_count":2512,"notifications":false,"location":"Boston, MA","id":14602259,"verified":false,"time_zone":"Eastern Time (US & Canada)","profile_sidebar_border_color":"ffffff"},"in_reply_to_user_id":null,"retweet_count":1,"in_reply_to_screen_name":null,"in_reply_to_status_id_str":null,"possibly_sensitive":false,"retweeted":false,"source":"\u003Ca href=\"http:\/\/dlvr.it\" rel=\"nofollow\"\u003Edlvr.it\u003C\/a\u003E","in_reply_to_user_id_str":null,"coordinates":null,"id":149614556707168257,"text":"Charges lodged against two former state workers in Fall River swimming pool death http:\/\/t.co\/JP6lFTxI"}]);</script>
-				</div><!-- / .sidebar-section -->
-				
-				<div class="sidebar-ad">
-					<div class="advertisement">
-						<p>Advertisement</p>
-                        <div class="ad"><script>OAS_RICH('ARTICLE');</script></div>
-					</div>
-				</div><!-- / .sidebar-ad -->
+			</div>
+			
+			</div><!-- / #rightAd -->
+
 				
 				<div id="mostPopular" class="sidebar-section">
 					<!--passthru-->
@@ -830,61 +549,85 @@ Profile FAQ</a>&nbsp;
 		</div><!-- / .secondary -->
     </footer>
 		<p>Advertisement</p>
-        <div class="ad"><script>OAS_RICH('FOOTER');</script><script>OAS_RICH('HEADLINE2')</script></div>
+        <div class="ad"><script>OAS_RICH('FOOTER');</script></div>
     </div> <!-- end of #contain -->
 
-<!-- Begin mbox -->
-<script language="JavaScript">mboxCreate('bc_globalMbox','mboxPageValue=0.86','pageType=Article Page','path='+location.pathname,'profile.userRegistered=false','user.categoryAffinity=News');</script>
-<!-- End mbox -->
-  
-<!-- Begin Tracking JS -->
-	<script language="JavaScript" src="http://cache.boston.com/omniture/hcode/s_code.js"></script>
-	<script language="JavaScript"><!--
-	s.pageName='News | World | Middle East | Wave of bombings across Iraqi capital kills 60',s.channel='News',s.prop1='News | World';
-	s.server='',s.pageType='',s.prop2='',s.prop3='',s.prop4='',s.prop5='',s.prop6='Article Page | AP XML Story',s.prop7='',s.prop8='',s.prop9='',s.prop10='',s.prop41='Boston.com';
-	if(document.location.search.indexOf('comments=all')!=-1) { s.prop6 += ' | Comments view'; }
-	if (archivedState && (archivedState=1)) {s.prop6 += ' | Archive Stub';}
-	/* E-commerce Variables */
-	s.campaign='',s.state='',s.zip='',s.events='',s.products='',s.purchaseID='',s.eVar1='',s.eVar2='',s.eVar3='',s.eVar4='',s.eVar5='',s.eVar6='',s.eVar7='',s.eVar8='',s.eVar9='',s.eVar10='',s.eVar41='Boston.com';
-	var isFacebook = getCookie('fbs_135637993114591'), isBCom_PA = getCookie('pathAuth'), isBCom_PAS = getCookie('pathAuthSess');
-	if((isBCom_PA != null) || ((isBCom_PA != null) && (isBCom_PAS != null))) {
-		s.prop35 = 'Logged in - Boston', s.eVar20 = 'Logged in - Boston';
-	}
-	else {
-		if(isFacebook != null) { s.prop35 = 'Logged in - Facebook', s.eVar20 = 'Logged in - Facebook'; }
-		else { s.prop35 = 'Not Logged in', s.eVar20='Not Logged in'; }
-	}
-	var s_code=s.t();if(s_code)document.write(s_code)
-	//--></script>
-	<script language="JavaScript" type="text/javascript"><!--
-	if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
-	//--></script>
-	<!-- Tacoda -->
-	<script language="JavaScript">var tcdacmd="dt";</script>
-	<script src="http://an.tacoda.net/an/13651/slf.js" language="JavaScript"></script>
-	<!-- End Tacoda -->
-	<!-- NYTD Pixel -->
-	<script language="JavaScript"><!-- 	 
-	 Nytd_Pixel_addGlobalTaxonomyValue('1'); 	 
-	 Nytd_Pixel(); 	 
-	 --></script>
-	<!-- End NYTD Pixel -->
-	<script src="http://cache.boston.com/universal/js/bcom_chartbeat.js"></script>
-	<script type="text/javascript">
-	  (function () {
-		var d = new Image(1, 1);
-		d.onerror = d.onload = function () {
-		  d.onerror = d.onload = null;
-		};
-		d.src = ["//secure-us.imrworldwide.com/cgi-bin/m?ci=us-604060h&cg=0&cc=1&si=", escape(window.location.href), "&rp=", escape(document.referrer), "&ts=compact&rnd=", (new Date()).getTime()].join('');
-	  })();
+
+    <script>
+		// put onload event handler for ad post-render slot here - this will go into an external file soon!
+		(function( win ){
+			var doc = win.document,
+				docElem = doc.documentElement;
+
+			// util listener function	
+			function addEvent(elm, evType, fn, useCapture) {
+				if (elm.addEventListener) { 
+					elm.addEventListener(evType, fn, useCapture); 
+					return true; 
+				} else if (elm.attachEvent) { 
+					var r = elm.attachEvent('on' + evType, fn); 
+					return r; 
+				} else {
+					elm['on' + evType] = fn;
+				}
+			};
+
+			addEvent( win, 'load', function(){
+				var adLen = globe.thirdPartyIds.length;
+
+				for (var i = 1; i <= adLen; ++i) {
+					var destEl = doc.getElementById( 'ad-' + i ),
+						sourceEl = doc.getElementById( i + '-cache'),
+						rootEl = document.getElementById( i + '-root'); // don't know if I can/should use this
+
+					//var destScripts = destEl.getElementsByTagName('script');
+					//destEl.removeChild( destScripts );
+
+					// move ad in it's home div spot and display it!
+					destEl.appendChild( sourceEl );
+					sourceEl.style.display = '';
+
+				};
+
+			}, false);
+				
+		})( this );
+
+    </script>
+
+    <!-- OAS AD RENDERING AREA BELOW -->
+
+
+	<script>
+		// TOP
+		(function( win ){
+			var doc = win.document,
+				id = globe.thirdPartyIds[0],
+				name = globe.adPositionNames[0];
+				
+				document.write('<div id="'+id+'-cache'+'" style="display:none;"><div id="'+id+'-root'+'">');
+				OAS_RICH( ''+name +'' );
+			
+		})( this );
 	</script>
-	<!-- Gravity -->
-	<script type="text/javascript">
-	var gravityInsightsParams = {type:'content', site_guid:'fe6d5479cc3242c2b7ef253225b4bfcc'};
-	document.write(unescape("%3Cscript src='http://cdn.insights.gravity.com/moth-min.js' type='text/javascript'%3E%3C/script%3E"));
+	<script>document.write('</div></div>');</script>
+
+	<script>
+		// ARTICLE
+		(function( win ){
+			var doc = win.document,
+				id = globe.thirdPartyIds[1],
+				name = globe.adPositionNames[1];
+				
+				document.write('<div id="'+id+'-cache'+'" style="display:none;"><div id="'+id+'-root'+'">');
+				OAS_RICH( ''+name +'');
+				
+		})( this );
 	</script>
-	<!-- End Gravity -->
-<!-- End Tracking JS -->
+	<script>document.write('</div></div>');</script>
+
+
+
+
 </body>
 </html>

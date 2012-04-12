@@ -71,7 +71,7 @@
 	if( oas.dev ) {
 		window.OAS_RICH = function(pos) {
 			//console.log(pos);
-			return false;
+			return false; // ha ha, take that!
 		};
 	} else{
 		document.writeln('<script src="'+ oas.url +'adstream_mjx.ads/'+ oas.sitepage +'/1'+ oas.rns +'@'+ oas.listpos +'?'+ oas.query +'"> <\/script>');
