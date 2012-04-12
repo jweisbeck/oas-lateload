@@ -77,6 +77,19 @@
 		document.writeln('<script src="'+ oas.url +'adstream_mjx.ads/'+ oas.sitepage +'/1'+ oas.rns +'@'+ oas.listpos +'?'+ oas.query +'"> <\/script>');
 	}
 
+	// utility methods
+	oas.addEvent = function(el, ev, fn, uc) {
+		if (el.addEventListener) { 
+			el.addEventListener(ev, fn, uc); 
+			return true; 
+		} else if (el.attachEvent) { 
+			var r = el.attachEvent('on' + ev, fn); 
+			return r; 
+		} else {
+			el['on' + ev] = fn;
+		}
+	};
+
 
 	
 })( this );

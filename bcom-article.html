@@ -353,11 +353,7 @@
 					</div><!-- / #article -->
 					<div class="cf"></div>
 					<a name="commentAnchor"></a>
-					<div id="articleComments">
-						<div id="aComments">
-							<script type="text/javascript" src="http://cache.boston.com/universal/js/pCommentsHead.js"></script>
-						</div>
-					</div><!-- / #articleComments -->
+
 
 					<div class="hideMe">
 						<div id="relatedContent"></div>
@@ -571,25 +567,12 @@
 
 
     <script>
-		// put onload event handler for ad post-render slot here - this will go into an external file soon!
+		// put onload event handler for post-render re-slot here - this will go into an external file soon!
 		(function( win ){
 			var doc = win.document,
 				docElem = doc.documentElement;
 
-			// util listener function	
-			function addEvent(elm, evType, fn, useCapture) {
-				if (elm.addEventListener) { 
-					elm.addEventListener(evType, fn, useCapture); 
-					return true; 
-				} else if (elm.attachEvent) { 
-					var r = elm.attachEvent('on' + evType, fn); 
-					return r; 
-				} else {
-					elm['on' + evType] = fn;
-				}
-			};
-
-			addEvent( win, 'load', function(){
+			oas.addEvent( win, 'load', function(){
 				var adLen = globe.thirdPartyIds.length;
 
 				for (var i = 1; i <= adLen; ++i) {
@@ -613,8 +596,6 @@
     </script>
 
     <!-- OAS AD RENDERING AREA BELOW -->
-
-
 	<script>
 		// TOP
 		(function( win ){
@@ -659,7 +640,7 @@
 	</script>
 	<script>document.write('</div></div>');</script>
 
-		<script>
+	<script>
 		// ARTICLE
 		(function( win ){
 			var doc = win.document,
@@ -675,7 +656,7 @@
 	<script>document.write('</div></div>');</script>
 
 
-		<script>
+	<script>
 		// FOOTER
 		(function( win ){
 			var doc = win.document,
